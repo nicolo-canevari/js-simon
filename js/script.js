@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Funzione per generare 5 numeri casuali tra 1 e 50
     function generateRandomNumbers() {
-
         while (numbersToGuess.length < 5) {
 
             const randomNumber = Math.floor(Math.random() * 50) + 1;
@@ -25,11 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     }
-
-    // Mostra i numeri nella lista
-    numbersList.innerHTML = numbersToGuess.map(num => `<li class="fs-2">${num}</li>`).join('');
-
-
 
     // Funzione avvio del countdown
     function startCountdown() {
@@ -67,21 +61,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const userAnswers = Array.from(inputGroup.querySelectorAll('input')).map(input => parseInt(input.value));
 
-        // Rimuovo evenzuali duplicati
+        // Rimuovo eventuali duplicati
         const uniqueUserAnswers = [...new Set(userAnswers)];
 
         // Controllo valori invalidi
         if (userAnswers.length !== 5 || uniqueUserAnswers.length !== 5) {
-
+            
             message.innerText = 'Inserisci 5 numeri unici tra 1 e 50.';
             return;
 
         }
 
         if (userAnswers.some(num => isNaN(num) || num < 1 || num > 50)) {
-
+            
             message.innerText = 'Inserisci solo numeri tra 1 e 50.';
-
             return;
 
         }
@@ -89,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Verifico quante risposte sono corrette
         let correctAnswers = 0;
         userAnswers.forEach(num => {
-
             if (numbersToGuess.includes(num)) {
 
                 correctAnswers++;
@@ -107,6 +99,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function startGame() {
 
         generateRandomNumbers();
+
+        // Mostra i numeri generati
+        numbersList.innerHTML = numbersToGuess.map(num => `<li class="fs-2">${num}</li>`).join('');
+
         startCountdown();
 
     }
@@ -124,5 +120,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Avvia il gioco al caricamento della pagina
     startGame();
-
+    
 });
