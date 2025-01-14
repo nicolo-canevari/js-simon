@@ -60,3 +60,46 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1000);
 
     }
+
+      // Funzione per verificare le risposte
+      function verifyAnswers() {
+
+        const userAnswers = Array.from(inputGroup.querySelectorAll('input')).map(input => parseInt(input.value));
+
+        // Rimuovo evenzuali duplicati
+        const uniqueUserAnswers = [...new Set(userAnswers)]; 
+
+        // Controllo valori invalidi
+        if (userAnswers.length !== 5 || uniqueUserAnswers.length !== 5) {
+
+            message.innerText = 'Inserisci 5 numeri unici tra 1 e 50.';
+            return;
+
+        }
+
+        if (userAnswers.some(num => isNaN(num) || num < 1 || num > 50)) {
+
+            message.innerText = 'Inserisci solo numeri tra 1 e 50.';
+
+            return;
+
+        }
+
+         // Verifico quante risposte sono corrette
+         let correctAnswers = 0;
+         userAnswers.forEach(num => {
+
+             if (numbersToGuess.includes(num)) {
+
+                 correctAnswers++;
+
+             }
+
+         });
+ 
+         // Mostra il risultato
+         message.innerText = `Hai indovinato ${correctAnswers} numeri corretti!`;
+
+     }
+
+     
