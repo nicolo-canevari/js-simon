@@ -29,12 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mostra i numeri nella lista
     numbersList.innerHTML = numbersToGuess.map(num => `<li class="fs-2">${num}</li>`).join('');
 
-}
 
-     // Funzione avvio del countdown
-     function startCountdown() {
 
-        let timeRemaining = 30;
+    // Funzione avvio del countdown
+    function startCountdown() {
+
+        // Secondi del timer
+        let timeRemaining = 5;
         countdown.innerText = `Tempo restante: ${timeRemaining}s`;
 
         countdownTimer = setInterval(() => {
@@ -47,13 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 clearInterval(countdownTimer);
 
                 // Nasconde i numeri dopo il countdown
-                numbersList.innerHTML = ''; 
+                numbersList.innerHTML = '';
 
                 // Mostra il form per inserire i numeri
-                answersForm.classList.remove('d-none'); 
+                answersForm.classList.remove('d-none');
 
                 // Resetta eventuali messaggi di errore
-                message.innerText = ''; 
+                message.innerText = '';
 
             }
 
@@ -61,13 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-      // Funzione per verificare le risposte
-      function verifyAnswers() {
+    // Funzione per verificare le risposte
+    function verifyAnswers() {
 
         const userAnswers = Array.from(inputGroup.querySelectorAll('input')).map(input => parseInt(input.value));
 
         // Rimuovo evenzuali duplicati
-        const uniqueUserAnswers = [...new Set(userAnswers)]; 
+        const uniqueUserAnswers = [...new Set(userAnswers)];
 
         // Controllo valori invalidi
         if (userAnswers.length !== 5 || uniqueUserAnswers.length !== 5) {
@@ -85,21 +86,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-         // Verifico quante risposte sono corrette
-         let correctAnswers = 0;
-         userAnswers.forEach(num => {
+        // Verifico quante risposte sono corrette
+        let correctAnswers = 0;
+        userAnswers.forEach(num => {
 
-             if (numbersToGuess.includes(num)) {
+            if (numbersToGuess.includes(num)) {
 
-                 correctAnswers++;
+                correctAnswers++;
 
-             }
+            }
 
-         });
- 
-         // Mostra il risultato
-         message.innerText = `Hai indovinato ${correctAnswers} numeri corretti!`;
+        });
 
-     }
+        // Mostra il risultato
+        message.innerText = `Hai indovinato ${correctAnswers} numeri corretti!`;
 
-     
+    }
+
+    // Funzione per iniziare il gioco
+    function startGame() {
+
+        generateRandomNumbers();
+        startCountdown();
+
+    }
+
+    // Event listener per il form di risposta
+    answersForm.addEventListener('submit', (e) => {
+
+        // Impedisco l'invio del form (evitando che la pagina venga ricaricata) e faccio eseguire solo la verifica dei numeri inseriti
+        e.preventDefault();
+
+        // Verifico i numeri inseriti
+        verifyAnswers();
+
+    });
+
+    // Avvia il gioco al caricamento della pagina
+    startGame();
+
+});
