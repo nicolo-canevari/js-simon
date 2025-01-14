@@ -25,5 +25,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     }
-    
-});
+
+    // Mostra i numeri nella lista
+    numbersList.innerHTML = numbersToGuess.map(num => `<li class="fs-2">${num}</li>`).join('');
+
+}
+
+     // Funzione avvio del countdown
+     function startCountdown() {
+
+        let timeRemaining = 30;
+        countdown.innerText = `Tempo restante: ${timeRemaining}s`;
+
+        countdownTimer = setInterval(() => {
+
+            timeRemaining--;
+            countdown.innerText = `Tempo restante: ${timeRemaining}s`;
+
+            if (timeRemaining <= 0) {
+
+                clearInterval(countdownTimer);
+
+                // Nasconde i numeri dopo il countdown
+                numbersList.innerHTML = ''; 
+
+                // Mostra il form per inserire i numeri
+                answersForm.classList.remove('d-none'); 
+
+                // Resetta eventuali messaggi di errore
+                message.innerText = ''; 
+
+            }
+
+        }, 1000);
+
+    }
