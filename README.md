@@ -16,8 +16,8 @@ Se l’utente ha inserito qualcosa di non valido, segnaliamolo visivamente nel f
 
 LOGICA:
 -Faccio apparire 5 numeri random dentro gli input che vadano da 1 a 50.
--Dalla comparsa dei numeri random si avvierà un timer di 30"(countdown).
--Dopo 30" i numeri scompariranno lasciando uno spazio vuoto che l'utente andrà a compilare.
+-Dalla comparsa dei numeri random si avvierà un timer (countdown).
+-Dopo il countdown i numeri scompariranno lasciando uno spazio vuoto che l'utente andrà a compilare.
 -La compilazione prevede solo l'inserimento di numeri scelti dall'utente.
 <!-- devo impedire all'utente di mettere 2 volte lo stesso numero o inserire caratteri che non siano numeri, se l'utente ha inserito qualcosa di non valido vado a visualizzarlo con un disclaimer nel form -->
 -La macchina andrà a verificare (anche se l'ordine di inserimento non è identico a quello precedentemente visualizzato) se i numeri inseriti dal'utente siano giusti o meno.

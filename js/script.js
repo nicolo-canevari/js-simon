@@ -9,6 +9,7 @@ let countdownTimer;
 
 // Funzione per generare 5 numeri casuali tra 1 e 50
 function generateRandomNumbers() {
+    
     while (numbersToGuess.length < 5) {
 
         const randomNumber = Math.floor(Math.random() * 50) + 1;
@@ -51,7 +52,7 @@ function startCountdown() {
             // Svuota i campi input rimuovendo eventuali valori presenti (bug numeri)
             const inputs = inputGroup.querySelectorAll('input');
             inputs.forEach(input => {
-                
+
                 input.value = ''; 
 
             });
@@ -97,7 +98,7 @@ function verifyAnswers() {
     });
 
     // Mostra il risultato
-    message.innerText = `Hai indovinato ${correctAnswers} numeri corretti!`;
+    message.innerText = `Hai indovinato ${correctAnswers} numeri!`;
 
 }
 
